@@ -8,8 +8,7 @@ public class StringsExpander {
     public static final int FIRSTINDEX = 0;
 
     private static String decode(String text) {
-        StringBuilder buildedText = new StringBuilder();
-        buildedText.insert(FIRSTINDEX, text.substring(FIRSTINDEX));
+        StringBuilder buildedText = new StringBuilder(text);
         StringBuilder decodeText = new StringBuilder();
         while (!StringsCompressor.isBlank(buildedText)) {
             String targetString = getOneStringFromTop(buildedText);
@@ -20,14 +19,12 @@ public class StringsExpander {
     }
 
     private static String makeText(String targetString, int number) {
-        int none = 0;
-        if (number == none) {
+        if (number == 0) {
             return targetString;
         }
         StringBuilder text = new StringBuilder();
-        while (number > none) {
+        for(int i=0;i<number;i++){
             text.append(targetString);
-            number--;
         }
         return text.toString();
     }

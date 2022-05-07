@@ -9,11 +9,10 @@ public class StringsCompressor {
     public static final int START_COUNT = 1;
 
     private static String encode(String text) {
-        StringBuilder buildedText = new StringBuilder();
-        buildedText.insert(FIRSTINDEX, text.substring(FIRSTINDEX));
+        StringBuilder buildedText = new StringBuilder(text);
         StringBuilder encodeText = new StringBuilder();
         int sameCount = START_COUNT;
-        prepareFastString(buildedText, encodeText);
+        prepareFarstString(buildedText, encodeText);
         while (!isBlank(buildedText)) {
             String topString = getStringForTop(buildedText);
             if (topString.equals(getStringForLast(encodeText))) {
@@ -36,10 +35,7 @@ public class StringsCompressor {
     }
 
     public static boolean isBlank(StringBuilder sb) {
-        if (sb.length() == 0) {
-            return true;
-        }
-        return false;
+        return sb.length() == 0;
     }
 
     private static String getStringForLast(StringBuilder sb) {
@@ -47,7 +43,7 @@ public class StringsCompressor {
         return lastString;
     }
 
-    private static void prepareFastString(StringBuilder buildedText, StringBuilder encodeText) {
+    private static void prepareFarstString(StringBuilder buildedText, StringBuilder encodeText) {
         if (isBlank(encodeText)) {
             encodeText.append(getStringForTop(buildedText));
         }
